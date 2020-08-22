@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>isearch</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+
+        <form action="" method="POST">
+          <label for="country">Country</label>
+          <input name="input1">
+          <label for="city">City</label>
+          <input name="input2">
+          <label for="keyword">keyword</label>
+          <input name="input3">
+        <input type="submit">
+      </form>
+
+
+
+
+
+
+
+        <table class="table">
+          <thead>
+            <tr>
+
+              <th scope="col">url</th>
+              <th scope="col">email</th>
+                <th scope="col">country</th>
+              <th scope="col">keyword</th>
+                <th scope="col">city</th>
+                <th scope="col">type</th>
+            </tr>
+          </thead>
+          <tbody>
+          <a href="/home" ><button class=grey style="height:75px;width:80px">back</button></a>
+            <br>
+            <br>
+          <a href="/delete" ><button class=grey style="height:75px;width:80px">Delete All</button></a>
+            <br>
+            <br>
+          <a href="/csv" ><button class=grey style="height:75px;width:80px">To CSV</button></a>
+          <br>
+          <br>
+          <form action="/deletebysearch" method="POST">
+          <label for="keyword delete">keyword delete</label>
+          <input name="del">
+          <input type="submit">
+          </form>
+
+
+          {% for row in rows %}
+          <tr>
+              <td>{{row["url"]}}</td>
+              <td>{{row["email"]}}</td>
+              <td>{{row["country"]}}</td>
+              <td>{{row["keyword"]}}</td>
+              <td>{{row["city"]}}</td>
+              <td>{{row["type"]}}</td>
+          </tr>
+
+          {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
