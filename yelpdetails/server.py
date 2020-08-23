@@ -20,49 +20,41 @@ def my_form():
 
 @app.route('/home', methods=['POST'])
 def my_form_post():
-    country = request.form['input1']
-    city = request.form['input2']
-    keyword = request.form['input3']
+    find = request.form['input1']
+    near = request.form['input2']
 
-    if (os.stat('country.txt').st_size != 0):
-        with open('country.txt', 'a') as f:
+
+    if (os.stat('option.txt').st_size != 0):
+        with open('option.txt', 'a') as f:
             f.write('')
-    if(os.stat('city.txt').st_size != 0):
-        with open('city.txt', 'a') as f:
+    if(os.stat('location.txt').st_size != 0):
+        with open('location.txt', 'a') as f:
             f.write('')
-    if (os.stat('keyword.txt').st_size != 0):
-        with open('keyword.txt', 'a') as f:
-            f.write('')
-    new_country=''
-    new_city=''
-    new_keyword=''
 
-    for b in country:
-        if(b=='\n'):
-            new_country+=''
-        else:
-            new_country+=b
+    new_find=''
+    new_near=''
 
-    for b in city:
-        if(b=='\n'):
-            new_city+=''
-        else:
-            new_city+=b
 
-    for b in keyword:
+    for b in find:
         if(b=='\n'):
-            new_keyword += ''
+            new_find+=''
         else:
-            new_keyword += b
+            new_find+=b
+
+    for b in near:
+        if(b=='\n'):
+            new_near+=''
+        else:
+            new_near+=b
+
 
     if request.method == 'POST':
-        if country!='' and city!='' and keyword!='':
-           with open('country.txt', 'a') as f:
-                f.write(str(new_country))
-           with open('city.txt', 'a') as f:
-               f.write(str(new_city))
-           with open('keyword.txt', 'a') as f:
-               f.write(str(new_keyword))
+        if find!='' and near!='' :
+           with open('option.txt', 'a') as f:
+                f.write(str(new_find))
+           with open('location.txt', 'a') as f:
+               f.write(str(new_near))
+
     # return render_template('home.html', find=find,near=near)
     return redirect('http://127.0.0.1:5000/home')
 
@@ -94,7 +86,7 @@ def my_form_post():
 
 @app.route("/view")
 def view_get():
-    con = sqlite3.connect("searchdetail.db")
+    con = sqlite3.connect("yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.execute("select * from detail")
@@ -104,7 +96,7 @@ def view_get():
 
 @app.route("/delete")
 def delete_all():
-    con = sqlite3.connect("searchdetail.db")
+    con = sqlite3.connect("yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.execute("select * from detail")
@@ -118,7 +110,7 @@ def delete_all():
 
 @app.route("/csv")
 def csv():
-    con = sqlite3.connect("searchdetail.db")
+    con = sqlite3.connect("yelpdetails.db")
     con.row_factory = sqlite3.Row
 
     df = pd.read_sql_query("SELECT * FROM detail", con)
@@ -126,7 +118,7 @@ def csv():
     print(type(df))
     df.to_csv('details.csv', index=False)
 
-    return render_template("home.html")
+    return redirect('http://127.0.0.1:5000/home')
 
 
 @app.route("/deletebysearch", methods=['POST'])
@@ -134,12 +126,12 @@ def deletebysearch():
     key = request.form['del']
     print(key)
     print(type(key))
-    sqliteConnection = sqlite3.connect('searchdetail.db')
+    sqliteConnection = sqlite3.connect('yelpdetails.db')
     cursor = sqliteConnection.cursor()
 
     # sql_delete_query = "SELECT * FROM detail WHERE keyword LIKE '%Dentist%'"
     # query = str("DELETE FROM detail WHERE keyword LIKE"+ " %{".format(key))
-    query = "DELETE FROM detail WHERE keyword LIKE '%{}%'".format(key)
+    query = "DELETE FROM detail WHERE find LIKE '%{}%'".format(key)
     sql_delete_query = query
     cursor.execute(sql_delete_query)
     sqliteConnection.commit()
@@ -149,20 +141,16 @@ def deletebysearch():
 
 @app.route("/view", methods=['POST'])
 def view():
-    con = sqlite3.connect("searchdetail.db")
+    con = sqlite3.connect("yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
 
+    find = request.form['input1']
+    near = request.form['input2']
 
-
-    # if request.method == 'POST':
-    country = request.form['input1']
-    city = request.form['input2']
-    keyword = request.form['input3']
-
-    if(country!='' and city!='' and keyword!=''):
+    if(find!='' and near!=''):
         # cur.execute("select * from detail where country")
-        cur.execute("SELECT * FROM detail WHERE country=? and city=? and keyword=?", (country,city,keyword,))
+        cur.execute("SELECT * FROM detail WHERE find=? and near=? ", (find,near,))
         rows = cur.fetchall()
         if(len(rows)==0):
             cur.execute("select * from detail")
@@ -171,6 +159,118 @@ def view():
         cur.execute("select * from detail")
         rows = cur.fetchall()
     return render_template("index.html",rows = rows)
+
+
+@app.route('/submittwo', methods=['POST'])
+def onsubmittwo():
+    find = request.form['input1']
+    near = request.form['input2']
+
+    if (os.stat('optiontwo.txt').st_size != 0):
+        with open('optiontwo.txt', 'a') as f:
+            f.write('')
+    if (os.stat('locationtwo.txt').st_size != 0):
+        with open('locationtwo.txt', 'a') as f:
+            f.write('')
+
+    new_find = ''
+    new_near = ''
+
+    for b in find:
+        if (b == '\n'):
+            new_find += ''
+        else:
+            new_find += b
+
+    for b in near:
+        if (b == '\n'):
+            new_near += ''
+        else:
+            new_near += b
+
+    if request.method == 'POST':
+        if find != '' and near != '':
+            with open('optiontwo.txt', 'a') as f:
+                f.write(str(new_find))
+            with open('locationtwo.txt', 'a') as f:
+                f.write(str(new_near))
+
+    return redirect('http://127.0.0.1:5000/home')
+
+
+@app.route('/submitthree', methods=['POST'])
+def onsubmitthree():
+    find = request.form['input1']
+    near = request.form['input2']
+
+    if (os.stat('optionthree.txt').st_size != 0):
+        with open('optionthree.txt', 'a') as f:
+            f.write('')
+    if (os.stat('locationthree.txt').st_size != 0):
+        with open('locationthree.txt', 'a') as f:
+            f.write('')
+
+    new_find = ''
+    new_near = ''
+
+    for b in find:
+        if (b == '\n'):
+            new_find += ''
+        else:
+            new_find += b
+
+    for b in near:
+        if (b == '\n'):
+            new_near += ''
+        else:
+            new_near += b
+
+    if request.method == 'POST':
+        if find != '' and near != '':
+            with open('optionthree.txt', 'a') as f:
+                f.write(str(new_find))
+            with open('locationthree.txt', 'a') as f:
+                f.write(str(new_near))
+
+    return redirect('http://127.0.0.1:5000/home')
+
+
+@app.route('/submitfour', methods=['POST'])
+def onsubmitfour():
+    find = request.form['input1']
+    near = request.form['input2']
+
+    if (os.stat('optionfour.txt').st_size != 0):
+        with open('optionfour.txt', 'a') as f:
+            f.write('')
+    if (os.stat('locationfour.txt').st_size != 0):
+        with open('location.txt', 'a') as f:
+            f.write('')
+
+    new_find = ''
+    new_near = ''
+
+    for b in find:
+        if (b == '\n'):
+            new_find += ''
+        else:
+            new_find += b
+
+    for b in near:
+        if (b == '\n'):
+            new_near += ''
+        else:
+            new_near += b
+
+    if request.method == 'POST':
+        if find != '' and near != '':
+            with open('optionfour.txt', 'a') as f:
+                f.write(str(new_find))
+            with open('locationfour.txt', 'a') as f:
+                f.write(str(new_near))
+
+    return redirect('http://127.0.0.1:5000/home')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

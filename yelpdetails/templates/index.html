@@ -12,12 +12,11 @@
     <div class="container">
 
         <form action="" method="POST">
-          <label for="country">Country</label>
+          <label for="country">find</label>
           <input name="input1">
-          <label for="city">City</label>
+          <label for="city">near</label>
           <input name="input2">
-          <label for="keyword">keyword</label>
-          <input name="input3">
+
         <input type="submit">
       </form>
 
@@ -31,15 +30,26 @@
           <thead>
             <tr>
 
-              <th scope="col">url</th>
-              <th scope="col">email</th>
-                <th scope="col">country</th>
+              <th scope="col">Name</th>
+              <th scope="col">website_link</th>
+                <th scope="col">website_name</th>
               <th scope="col">keyword</th>
-                <th scope="col">city</th>
-                <th scope="col">type</th>
+                <th scope="col">phone</th>
+                <th scope="col">Direction</th>
+                <th scope="col">category</th>
+              <th scope="col">find</th>
+                <th scope="col">near</th>
+              <th scope="col">email</th>
+                <th scope="col">website</th>
+                <th scope="col">competitor1</th>
+                <th scope="col">competitor2</th>
+              <th scope="col">competitor3</th>
+                <th scope="col">competitor4</th>
             </tr>
           </thead>
           <tbody>
+
+
           <a href="/home" ><button class=grey style="height:75px;width:80px">back</button></a>
             <br>
             <br>
@@ -47,6 +57,9 @@
             <br>
             <br>
           <a href="/csv" ><button class=grey style="height:75px;width:80px">To CSV</button></a>
+
+
+
           <br>
           <br>
           <form action="/deletebysearch" method="POST">
@@ -58,12 +71,21 @@
 
           {% for row in rows %}
           <tr>
-              <td>{{row["url"]}}</td>
-              <td>{{row["email"]}}</td>
-              <td>{{row["country"]}}</td>
+              <td>{{row["Name"]}}</td>
+              <td>{{row["website_link"]}}</td>
+              <td>{{row["website_name"]}}</td>
               <td>{{row["keyword"]}}</td>
-              <td>{{row["city"]}}</td>
-              <td>{{row["type"]}}</td>
+              <td>{{row["phone"]}}</td>
+              <td>{{row["Direction"]}}</td>
+              <td>{{row["category"]}}</td>
+              <td>{{row["find"]}}</td>
+              <td>{{row["near"]}}</td>
+              <td>{{row["email"]}}</td>
+              <td>{{row["website"]}}</td>
+              <td>{{row["competitor1"]}}</td>
+              <td>{{row["competitor2"]}}</td>
+              <td>{{row["competitor3"]}}</td>
+              <td>{{row["competitor4"]}}</td>
           </tr>
 
           {% endfor %}
@@ -74,3 +96,17 @@
 </body>
 </html>
 
+<!--Name text,-->
+<!--        website_link text,-->
+<!--        website_name text,-->
+<!--        phone text,-->
+<!--        Direction text,-->
+<!--        category text,-->
+<!--        find text,-->
+<!--        near text,-->
+<!--        email text,-->
+<!--        website text,-->
+<!--        competitor1 text,-->
+<!--        competitor2 text,-->
+<!--        competitor3 text,-->
+<!--        competitor4 text-->
