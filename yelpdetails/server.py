@@ -23,37 +23,37 @@ def my_form_post():
     find = request.form['input1']
     near = request.form['input2']
 
+    if find != '' and near != '':
+        if (os.stat('option.txt').st_size != 0):
+            with open('option.txt', 'a') as f:
+                f.write('\n')
+        if(os.stat('location.txt').st_size != 0):
+            with open('location.txt', 'a') as f:
+                f.write('\n')
 
-    if (os.stat('option.txt').st_size != 0):
-        with open('option.txt', 'a') as f:
-            f.write('')
-    if(os.stat('location.txt').st_size != 0):
-        with open('location.txt', 'a') as f:
-            f.write('')
-
-    new_find=''
-    new_near=''
-
-
-    for b in find:
-        if(b=='\n'):
-            new_find+=''
-        else:
-            new_find+=b
-
-    for b in near:
-        if(b=='\n'):
-            new_near+=''
-        else:
-            new_near+=b
+        new_find=''
+        new_near=''
 
 
-    if request.method == 'POST':
-        if find!='' and near!='' :
-           with open('option.txt', 'a') as f:
-                f.write(str(new_find))
-           with open('location.txt', 'a') as f:
-               f.write(str(new_near))
+        for b in find:
+            if(b=='\n'):
+                new_find+=''
+            else:
+                new_find+=b
+
+        for b in near:
+            if(b=='\n'):
+                new_near+=''
+            else:
+                new_near+=b
+
+
+        if request.method == 'POST':
+            if find!='' and near!='' :
+               with open('option.txt', 'a') as f:
+                    f.write(str(new_find))
+               with open('location.txt', 'a') as f:
+                   f.write(str(new_near))
 
     # return render_template('home.html', find=find,near=near)
     return redirect('http://127.0.0.1:5000/home')
@@ -166,34 +166,35 @@ def onsubmittwo():
     find = request.form['input1']
     near = request.form['input2']
 
-    if (os.stat('optiontwo.txt').st_size != 0):
-        with open('optiontwo.txt', 'a') as f:
-            f.write('')
-    if (os.stat('locationtwo.txt').st_size != 0):
-        with open('locationtwo.txt', 'a') as f:
-            f.write('')
-
-    new_find = ''
-    new_near = ''
-
-    for b in find:
-        if (b == '\n'):
-            new_find += ''
-        else:
-            new_find += b
-
-    for b in near:
-        if (b == '\n'):
-            new_near += ''
-        else:
-            new_near += b
-
-    if request.method == 'POST':
-        if find != '' and near != '':
+    if find != '' and near != '':
+        if (os.stat('optiontwo.txt').st_size != 0):
             with open('optiontwo.txt', 'a') as f:
-                f.write(str(new_find))
+                f.write('\n')
+        if (os.stat('locationtwo.txt').st_size != 0):
             with open('locationtwo.txt', 'a') as f:
-                f.write(str(new_near))
+                f.write('\n')
+
+        new_find = ''
+        new_near = ''
+
+        for b in find:
+            if (b == '\n'):
+                new_find += ''
+            else:
+                new_find += b
+
+        for b in near:
+            if (b == '\n'):
+                new_near += ''
+            else:
+                new_near += b
+
+        if request.method == 'POST':
+            if find != '' and near != '':
+                with open('optiontwo.txt', 'a') as f:
+                    f.write(str(new_find))
+                with open('locationtwo.txt', 'a') as f:
+                    f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')
 
@@ -203,34 +204,35 @@ def onsubmitthree():
     find = request.form['input1']
     near = request.form['input2']
 
-    if (os.stat('optionthree.txt').st_size != 0):
-        with open('optionthree.txt', 'a') as f:
-            f.write('')
-    if (os.stat('locationthree.txt').st_size != 0):
-        with open('locationthree.txt', 'a') as f:
-            f.write('')
-
-    new_find = ''
-    new_near = ''
-
-    for b in find:
-        if (b == '\n'):
-            new_find += ''
-        else:
-            new_find += b
-
-    for b in near:
-        if (b == '\n'):
-            new_near += ''
-        else:
-            new_near += b
-
-    if request.method == 'POST':
-        if find != '' and near != '':
+    if find != '' and near != '':
+        if (os.stat('optionthree.txt').st_size != 0):
             with open('optionthree.txt', 'a') as f:
-                f.write(str(new_find))
+                f.write('\n')
+        if (os.stat('locationthree.txt').st_size != 0):
             with open('locationthree.txt', 'a') as f:
-                f.write(str(new_near))
+                f.write('\n')
+
+        new_find = ''
+        new_near = ''
+
+        for b in find:
+            if (b == '\n'):
+                new_find += ''
+            else:
+                new_find += b
+
+        for b in near:
+            if (b == '\n'):
+                new_near += ''
+            else:
+                new_near += b
+
+        if request.method == 'POST':
+            if find != '' and near != '':
+                with open('optionthree.txt', 'a') as f:
+                    f.write(str(new_find))
+                with open('locationthree.txt', 'a') as f:
+                    f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')
 
@@ -240,34 +242,35 @@ def onsubmitfour():
     find = request.form['input1']
     near = request.form['input2']
 
-    if (os.stat('optionfour.txt').st_size != 0):
-        with open('optionfour.txt', 'a') as f:
-            f.write('')
-    if (os.stat('locationfour.txt').st_size != 0):
-        with open('location.txt', 'a') as f:
-            f.write('')
-
-    new_find = ''
-    new_near = ''
-
-    for b in find:
-        if (b == '\n'):
-            new_find += ''
-        else:
-            new_find += b
-
-    for b in near:
-        if (b == '\n'):
-            new_near += ''
-        else:
-            new_near += b
-
-    if request.method == 'POST':
-        if find != '' and near != '':
+    if find != '' and near != '':
+        if (os.stat('optionfour.txt').st_size != 0):
             with open('optionfour.txt', 'a') as f:
-                f.write(str(new_find))
+                f.write('\n')
+        if (os.stat('locationfour.txt').st_size != 0):
             with open('locationfour.txt', 'a') as f:
-                f.write(str(new_near))
+                f.write('\n')
+
+        new_find = ''
+        new_near = ''
+
+        for b in find:
+            if (b == '\n'):
+                new_find += ''
+            else:
+                new_find += b
+
+        for b in near:
+            if (b == '\n'):
+                new_near += ''
+            else:
+                new_near += b
+
+        if request.method == 'POST':
+            if find != '' and near != '':
+                with open('optionfour.txt', 'a') as f:
+                    f.write(str(new_find))
+                with open('locationfour.txt', 'a') as f:
+                    f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')
 

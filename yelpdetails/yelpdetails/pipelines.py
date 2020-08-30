@@ -35,7 +35,7 @@ class YelpdetailsPipeline(object):
         competitor3 text,
         competitor4 text
         )""")
-        # pass
+        pass
 
     def process_item(self, item, spider):
         self.store_db(item)
