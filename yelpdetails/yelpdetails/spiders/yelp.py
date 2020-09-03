@@ -63,7 +63,7 @@ class YelpSpider(scrapy.Spider):
 
 
         print(os.path.abspath(os.curdir))
-        if (os.stat('option.txt').st_size != 0 and os.stat('location.txt').st_size != 0 and os.stat('pages.txt').st_size != 0):
+        if (os.stat(os.path.abspath(os.curdir) + '\option.txt').st_size != 0 and os.stat(os.path.abspath(os.curdir) + '\location.txt').st_size != 0 and os.stat(os.path.abspath(os.curdir) + '\pages.txt').st_size != 0):
             firstinput = os.path.abspath(os.curdir) + "\option.txt"
             secondinput = os.path.abspath(os.curdir) + "\location.txt"
 
@@ -91,6 +91,12 @@ class YelpSpider(scrapy.Spider):
             self.near_key = near[0]
             self.page_key = numpages
 
+            if (self.find_key == '' or self.near_key == ''):
+                find.pop(0)
+                near.pop(0)
+
+            self.find_key = find[0]
+            self.near_key = near[0]
 
             find.pop(0)
             near.pop(0)
@@ -110,25 +116,25 @@ class YelpSpider(scrapy.Spider):
                 search_button = driver.find_element_by_xpath("//button[@id='header-search-submit']")
                 search_button.click()
 
-                with open('option.txt', 'w') as f:
+                with open(os.path.abspath(os.curdir) + '\option.txt', 'w') as f:
                     f.write('')
 
                 new_find = ''
                 for b in find:
                     new_find += b + "\n"
 
-                with open('option.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir) + '\option.txt', 'a') as f:
                     f.write(str(new_find))
 
 
-                with open('location.txt', 'w') as f:
+                with open(os.path.abspath(os.curdir) + '\location.txt', 'w') as f:
                     f.write('')
 
                 new_near = ''
                 for b in near:
                     new_near += b + "\n"
 
-                with open('location.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir) + '\location.txt', 'a') as f:
                     f.write(str(new_near))
 
 

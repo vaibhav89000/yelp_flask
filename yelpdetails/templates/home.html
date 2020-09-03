@@ -1,57 +1,145 @@
 <!DOCTYPE html>
    <head>
       <title>yelp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
    </head>
 
-   <body>
-      <form action="" method="POST">
-          <label for="Find">Find</label>
+   <body style="background-color:grey;">
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>
-          <label for="Near">Near</label>
+    <div class="container">
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>
-        <input type="submit">
-      </form>
-      <br>
-      <br>
-      <br>
-      <form action="/submittwo" method="POST">
-          <label for="Find">Find</label>
+            <div class="row"  style="margin-top:10px;margin-bottom:20px">
+            <form action="" method="POST">
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>
-          <label for="Near">Near</label>
+                <div class="row">
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input1" placeholder="Find"></textarea>
+                </div>
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>
-        <input type="submit">
-      </form>
-      <br>
-      <br>
-      <br>
-      <form action="/submitthree" method="POST">
-          <label for="Find">Find</label>
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>
-          <label for="Near">Near</label>
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input2" placeholder="Near"></textarea>
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                </div>
+            </form>
+            </div>
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>
-        <input type="submit">
-      </form>
-      <br>
-      <br>
-      <br>
-      <form action="/submitfour" method="POST">
-          <label for="Find">Find</label>
+            <div class="row"  style="margin-top:10px;margin-bottom:20px">
+             <form action="/submittwo" method="POST">
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>
-          <label for="Near">Near</label>
+                <div class="row">
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input1" placeholder="Find"></textarea>
+                </div>
 
-          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>
-        <input type="submit">
-      </form>
 
-   <a href="/view" ><button class=grey style="height:75px;width:80px">View</button></a>
-      <br>
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input2" placeholder="Near"></textarea>
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                </div>
+            </form>
+            </div>
+
+
+
+            <div class="row"  style="margin-top:10px;margin-bottom:20px">
+             <form action="/submitthree" method="POST">
+
+                <div class="row">
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input1" placeholder="Find"></textarea>
+                </div>
+
+
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input2" placeholder="Near"></textarea>
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                </div>
+            </form>
+            </div>
+
+
+
+            <div class="row"  style="margin-top:10px;margin-bottom:20px">
+             <form action="/submitfour" method="POST">
+
+                <div class="row">
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input1" placeholder="Find"></textarea>
+                </div>
+
+
+                <div class="col-lg-6 ">
+                    <textarea rows="4" cols="50" style="min-height:100px;max-height:200px" class="input100" name="input2" placeholder="Near"></textarea>
+                    <input type="submit" class="btn btn-primary">
+                </div>
+                </div>
+            </form>
+            </div>
+
+            <div class="row"  style="margin-top:10px;margin-bottom:20px">
+                <a href="/view" ><button class="btn btn-info" >View</button></a>
+            </div>
+
+
+        </div>
+
+
+
+<!--      <form action="" method="POST">-->
+<!--          <label for="Find">Find</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>-->
+<!--          <label for="Near">Near</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>-->
+<!--        <input type="submit">-->
+<!--      </form>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <form action="/submittwo" method="POST">-->
+<!--          <label for="Find">Find</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>-->
+<!--          <label for="Near">Near</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>-->
+<!--        <input type="submit">-->
+<!--      </form>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <form action="/submitthree" method="POST">-->
+<!--          <label for="Find">Find</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>-->
+<!--          <label for="Near">Near</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>-->
+<!--        <input type="submit">-->
+<!--      </form>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <br>-->
+<!--      <form action="/submitfour" method="POST">-->
+<!--          <label for="Find">Find</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input1" placeholder="Find"></textarea>-->
+<!--          <label for="Near">Near</label>-->
+
+<!--          <textarea rows="10" cols="50" style="height: 214px" class="input100" name="input2" placeholder="Near"></textarea>-->
+<!--        <input type="submit">-->
+<!--      </form>-->
+
+<!--   <a href="/view" ><button class=grey style="height:75px;width:80px">View</button></a>-->
+<!--      <br>-->
 
    </body>
 </html>

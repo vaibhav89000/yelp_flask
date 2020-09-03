@@ -11,23 +11,91 @@
 <body>
     <div class="container">
 
-        <form action="" method="POST">
-          <label for="country">find</label>
-          <input name="input1">
-          <label for="city">near</label>
-          <input name="input2">
+        <div class="row"  style="margin-top:10px;margin-bottom:70px">
+            <form action="" method="POST">
 
-        <input type="submit">
+            <div class="row">
+
+                <div class="col-lg-6 ">
+                    <input name="input1" placeholder="find">
+                    </div>
+
+                <div class="col-lg-6 ">
+                    <input name="input2"  placeholder="near">
+                    </div>
+
+                </div>
+
+            <div class="row">
+                <div class="col-lg-6 ">
+                    <input class="btn btn-primary" type="submit">
+                </div>
+                </div>
+<!--          <label for="country">find</label>-->
+<!--          <input name="input1">-->
+<!--          <label for="city">near</label>-->
+<!--          <input name="input2">-->
+
+<!--        <input type="submit">-->
       </form>
+        </div>
 
 
 
 
 
+<!--    <a href="/home" ><button class=grey style="height:75px;width:80px">back</button></a>-->
+<!--            <br>-->
+<!--            <br>-->
+<!--          <a href="/delete" ><button class=grey style="height:75px;width:80px">Delete All</button></a>-->
+<!--            <br>-->
+<!--            <br>-->
+<!--          <a href="/csv" ><button class=grey style="height:75px;width:80px">To CSV</button></a>-->
 
 
-        <table class="table">
-          <thead>
+
+          <div class="row"  style="margin-top:10px;margin-bottom:70px">
+            <div class="col-lg-4 ">
+                    <a href="/home" ><button type="button" class="btn btn-primary"  >back</button></a>
+                </div>
+            <div class="col-lg-4 ">
+                    <a href="/delete" ><button type="button" class="btn btn-danger"  >Delete All</button></a>
+                </div>
+            <div class="col-lg-4 ">
+                    <a href="/csv" ><button type="button" class="btn btn-primary" >To CSV</button></a>
+                </div>
+        </div>
+
+
+<!--          <form action="/deletebysearch" method="POST">-->
+<!--          <label for="keyword delete">keyword delete</label>-->
+<!--          <input name="del">-->
+<!--          <input type="submit">-->
+<!--          </form>-->
+                <div class="row"  style="margin-top:10px;margin-bottom:70px">
+             <form action="/deletebysearch" method="POST">
+
+                <div class="row">
+                <div class="col-lg-6 ">
+                    <label>keyword delete</label>
+                </div>
+                    <div class="col-lg-6 ">
+                    <input name="del" placeholder="KEYWORD">
+                </div>
+                </div>
+                 <div class="row">
+                <div class="col-lg-6 ">
+                    <input type="submit" class="btn btn-danger">
+                </div>
+                 </div>
+             </form>
+        </div>
+
+
+
+        <div class="table-responsive-lg">
+            <table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
 
               <th scope="col">Name</th>
@@ -47,27 +115,8 @@
                 <th scope="col">competitor4</th>
             </tr>
           </thead>
+
           <tbody>
-
-
-          <a href="/home" ><button class=grey style="height:75px;width:80px">back</button></a>
-            <br>
-            <br>
-          <a href="/delete" ><button class=grey style="height:75px;width:80px">Delete All</button></a>
-            <br>
-            <br>
-          <a href="/csv" ><button class=grey style="height:75px;width:80px">To CSV</button></a>
-
-
-
-          <br>
-          <br>
-          <form action="/deletebysearch" method="POST">
-          <label for="keyword delete">keyword delete</label>
-          <input name="del">
-          <input type="submit">
-          </form>
-
 
           {% for row in rows %}
           <tr>
@@ -92,6 +141,8 @@
 
           </tbody>
         </table>
+            </div>
+
     </div>
 </body>
 </html>

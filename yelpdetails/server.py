@@ -20,15 +20,18 @@ def my_form():
 
 @app.route('/home', methods=['POST'])
 def my_form_post():
-    find = request.form['input1']
-    near = request.form['input2']
+    find_striped = request.form['input1']
+    near_striped = request.form['input2']
+
+    find = find_striped.strip()
+    near = near_striped.strip()
 
     if find != '' and near != '':
-        if (os.stat('option.txt').st_size != 0):
-            with open('option.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\option.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\option.txt', 'a') as f:
                 f.write('\n')
-        if(os.stat('location.txt').st_size != 0):
-            with open('location.txt', 'a') as f:
+        if(os.stat(os.path.abspath(os.curdir)+'\location.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\location.txt', 'a') as f:
                 f.write('\n')
 
         new_find=''
@@ -50,9 +53,9 @@ def my_form_post():
 
         if request.method == 'POST':
             if find!='' and near!='' :
-               with open('option.txt', 'a') as f:
+               with open(os.path.abspath(os.curdir)+'\option.txt', 'a') as f:
                     f.write(str(new_find))
-               with open('location.txt', 'a') as f:
+               with open(os.path.abspath(os.curdir)+'\location.txt', 'a') as f:
                    f.write(str(new_near))
 
     # return render_template('home.html', find=find,near=near)
@@ -86,7 +89,8 @@ def my_form_post():
 
 @app.route("/view")
 def view_get():
-    con = sqlite3.connect("yelpdetails.db")
+    print(os.path.abspath(os.curdir))
+    con = sqlite3.connect(os.path.abspath(os.curdir)+"\yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.execute("select * from detail")
@@ -96,7 +100,7 @@ def view_get():
 
 @app.route("/delete")
 def delete_all():
-    con = sqlite3.connect("yelpdetails.db")
+    con = sqlite3.connect(os.path.abspath(os.curdir)+"\yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     cur.execute("select * from detail")
@@ -105,20 +109,27 @@ def delete_all():
     # rows = cur.fetchall()
     con.commit()
 
-    return render_template("home.html")
+    return redirect('http://127.0.0.1:5000/view')
 
 
 @app.route("/csv")
 def csv():
-    con = sqlite3.connect("yelpdetails.db")
+    con = sqlite3.connect(os.path.abspath(os.curdir)+"\yelpdetails.db")
     con.row_factory = sqlite3.Row
 
     df = pd.read_sql_query("SELECT * FROM detail", con)
     print(df)
     print(type(df))
-    df.to_csv('details.csv', index=False)
+    # df.to_csv('details.csv', index=False)
 
-    return redirect('http://127.0.0.1:5000/home')
+    with open(os.path.abspath(os.curdir) + '\static\details.csv', "w") as my_empty_csv:
+        # now you have an empty file already
+        pass
+
+    df.to_csv(os.path.abspath(os.curdir) + '\static\details.csv', index=False)
+
+
+    return redirect('http://127.0.0.1:5000/view')
 
 
 @app.route("/deletebysearch", methods=['POST'])
@@ -126,7 +137,7 @@ def deletebysearch():
     key = request.form['del']
     print(key)
     print(type(key))
-    sqliteConnection = sqlite3.connect('yelpdetails.db')
+    sqliteConnection = sqlite3.connect(os.path.abspath(os.curdir)+'\yelpdetails.db')
     cursor = sqliteConnection.cursor()
 
     # sql_delete_query = "SELECT * FROM detail WHERE keyword LIKE '%Dentist%'"
@@ -136,12 +147,12 @@ def deletebysearch():
     cursor.execute(sql_delete_query)
     sqliteConnection.commit()
 
-    return render_template("home.html")
+    return redirect('http://127.0.0.1:5000/view')
 
 
 @app.route("/view", methods=['POST'])
 def view():
-    con = sqlite3.connect("yelpdetails.db")
+    con = sqlite3.connect(os.path.abspath(os.curdir)+"\yelpdetails.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
 
@@ -163,15 +174,19 @@ def view():
 
 @app.route('/submittwo', methods=['POST'])
 def onsubmittwo():
-    find = request.form['input1']
-    near = request.form['input2']
+    find_striped = request.form['input1']
+    near_striped = request.form['input2']
+
+    find = find_striped.strip()
+    near = near_striped.strip()
+
 
     if find != '' and near != '':
-        if (os.stat('optiontwo.txt').st_size != 0):
-            with open('optiontwo.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\optiontwo.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\optiontwo.txt', 'a') as f:
                 f.write('\n')
-        if (os.stat('locationtwo.txt').st_size != 0):
-            with open('locationtwo.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\locationtwo.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\locationtwo.txt', 'a') as f:
                 f.write('\n')
 
         new_find = ''
@@ -191,9 +206,9 @@ def onsubmittwo():
 
         if request.method == 'POST':
             if find != '' and near != '':
-                with open('optiontwo.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\optiontwo.txt', 'a') as f:
                     f.write(str(new_find))
-                with open('locationtwo.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\locationtwo.txt', 'a') as f:
                     f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')
@@ -201,15 +216,18 @@ def onsubmittwo():
 
 @app.route('/submitthree', methods=['POST'])
 def onsubmitthree():
-    find = request.form['input1']
-    near = request.form['input2']
+    find_striped = request.form['input1']
+    near_striped = request.form['input2']
+
+    find = find_striped.strip()
+    near = near_striped.strip()
 
     if find != '' and near != '':
-        if (os.stat('optionthree.txt').st_size != 0):
-            with open('optionthree.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\optionthree.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\optionthree.txt', 'a') as f:
                 f.write('\n')
-        if (os.stat('locationthree.txt').st_size != 0):
-            with open('locationthree.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\locationthree.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\locationthree.txt', 'a') as f:
                 f.write('\n')
 
         new_find = ''
@@ -229,9 +247,9 @@ def onsubmitthree():
 
         if request.method == 'POST':
             if find != '' and near != '':
-                with open('optionthree.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\optionthree.txt', 'a') as f:
                     f.write(str(new_find))
-                with open('locationthree.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\locationthree.txt', 'a') as f:
                     f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')
@@ -239,15 +257,18 @@ def onsubmitthree():
 
 @app.route('/submitfour', methods=['POST'])
 def onsubmitfour():
-    find = request.form['input1']
-    near = request.form['input2']
+    find_striped = request.form['input1']
+    near_striped = request.form['input2']
+
+    find = find_striped.strip()
+    near = near_striped.strip()
 
     if find != '' and near != '':
-        if (os.stat('optionfour.txt').st_size != 0):
-            with open('optionfour.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\optionfour.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\optionfour.txt', 'a') as f:
                 f.write('\n')
-        if (os.stat('locationfour.txt').st_size != 0):
-            with open('locationfour.txt', 'a') as f:
+        if (os.stat(os.path.abspath(os.curdir)+'\locationfour.txt').st_size != 0):
+            with open(os.path.abspath(os.curdir)+'\locationfour.txt', 'a') as f:
                 f.write('\n')
 
         new_find = ''
@@ -267,9 +288,9 @@ def onsubmitfour():
 
         if request.method == 'POST':
             if find != '' and near != '':
-                with open('optionfour.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\optionfour.txt', 'a') as f:
                     f.write(str(new_find))
-                with open('locationfour.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir)+'\locationfour.txt', 'a') as f:
                     f.write(str(new_near))
 
     return redirect('http://127.0.0.1:5000/home')

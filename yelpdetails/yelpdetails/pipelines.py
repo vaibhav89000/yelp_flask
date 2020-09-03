@@ -18,23 +18,23 @@ class YelpdetailsPipeline(object):
         self.curr = self.conn.cursor()
 
     def create_table(self):
-        self.curr.execute("""DROP TABLE IF EXISTS detail""")
-        self.curr.execute("""create table detail(
-        Name text,
-        website_link text,
-        website_name text,
-        phone text,
-        Direction text,
-        category text,
-        find text,
-        near text,
-        email text,
-        website text,
-        competitor1 text,
-        competitor2 text,
-        competitor3 text,
-        competitor4 text
-        )""")
+        # self.curr.execute("""DROP TABLE IF EXISTS detail""")
+        # self.curr.execute("""create table detail(
+        # Name text,
+        # website_link text,
+        # website_name text,
+        # phone text,
+        # Direction text,
+        # category text,
+        # find text,
+        # near text,
+        # email text,
+        # website text,
+        # competitor1 text,
+        # competitor2 text,
+        # competitor3 text,
+        # competitor4 text
+        # )""")
         pass
 
     def process_item(self, item, spider):

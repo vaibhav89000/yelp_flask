@@ -62,7 +62,7 @@ class YelptwoSpider(scrapy.Spider):
 
 
         print(os.path.abspath(os.curdir))
-        if (os.stat('optiontwo.txt').st_size != 0 and os.stat('locationtwo.txt').st_size != 0 and os.stat('pagestwo.txt').st_size != 0):
+        if (os.stat(os.path.abspath(os.curdir) + '\optiontwo.txt').st_size != 0 and os.stat(os.path.abspath(os.curdir) + '\locationtwo.txt').st_size != 0 and os.stat(os.path.abspath(os.curdir) + '\pagestwo.txt').st_size != 0):
             firstinput = os.path.abspath(os.curdir) + "\optiontwo.txt"
             secondinput = os.path.abspath(os.curdir) + "\locationtwo.txt"
 
@@ -90,6 +90,12 @@ class YelptwoSpider(scrapy.Spider):
             self.near_key = near[0]
             self.page_key = numpages
 
+            if (self.find_key == '' or self.near_key == ''):
+                find.pop(0)
+                near.pop(0)
+
+            self.find_key = find[0]
+            self.near_key = near[0]
 
             find.pop(0)
             near.pop(0)
@@ -109,25 +115,25 @@ class YelptwoSpider(scrapy.Spider):
                 search_button = driver.find_element_by_xpath("//button[@id='header-search-submit']")
                 search_button.click()
 
-                with open('optiontwo.txt', 'w') as f:
+                with open(os.path.abspath(os.curdir) + '\optiontwo.txt', 'w') as f:
                     f.write('')
 
                 new_find = ''
                 for b in find:
                     new_find += b + "\n"
 
-                with open('optiontwo.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir) + '\optiontwo.txt', 'a') as f:
                     f.write(str(new_find))
 
 
-                with open('locationtwo.txt', 'w') as f:
+                with open(os.path.abspath(os.curdir) + '\locationtwo.txt', 'w') as f:
                     f.write('')
 
                 new_near = ''
                 for b in near:
                     new_near += b + "\n"
 
-                with open('locationtwo.txt', 'a') as f:
+                with open(os.path.abspath(os.curdir) + '\locationtwo.txt', 'a') as f:
                     f.write(str(new_near))
 
 
